@@ -27,4 +27,9 @@ public class TransacaoService {
         }
         listTransacao.add(transacaoDTO);
     }
+
+    public void deletarTransacao(){
+        log.info("transacoes deletadas");
+        listTransacao.clear();
+    }
 }
