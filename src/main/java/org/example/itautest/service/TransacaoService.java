@@ -32,4 +32,13 @@ public class TransacaoService {
         log.info("transacoes deletadas");
         listTransacao.clear();
     }
+
+    public List<TransacaoDTO> gerarEstatistica(Integer tempoBusca){
+        OffsetDateTime dataHoraBuscada = OffsetDateTime.now().minusSeconds(tempoBusca);
+
+        return listTransacao.stream()
+                .filter(transacao -> transacao.dataHora().isAfter(dataHoraBuscada))
+                .toList();
+    }
+
 }
