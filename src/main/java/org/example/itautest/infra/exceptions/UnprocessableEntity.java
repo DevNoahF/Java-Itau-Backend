@@ -1,4 +1,4 @@
-package org.example.itautest.infra;
+package org.example.itautest.infra.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

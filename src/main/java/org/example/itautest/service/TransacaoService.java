@@ -2,7 +2,7 @@ package org.example.itautest.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.itautest.dto.TransacaoDTO;
-import org.example.itautest.infra.UnprocessableEntity;
+import org.example.itautest.infra.exceptions.UnprocessableEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
