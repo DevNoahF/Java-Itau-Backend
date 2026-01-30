@@ -18,7 +18,7 @@ public class EstatisticaController {
 
 
     @GetMapping
-    public ResponseEntity<EstatisticaDTO> lisarEstatisicas (
+    public ResponseEntity<EstatisticaDTO> listarEstatisicas(
             @RequestParam(value = "tempoBuscado", required = false, defaultValue = "60") Integer tempoBuscado){
 
         return ResponseEntity.ok(estatisticaService.calcularEstatisticaTransacao(tempoBuscado));

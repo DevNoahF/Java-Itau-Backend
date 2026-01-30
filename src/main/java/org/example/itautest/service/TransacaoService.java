@@ -16,7 +16,7 @@ public class TransacaoService {
     private final List<TransacaoDTO> listTransacao = new ArrayList<>();
 
     public void adicionarTransacao(TransacaoDTO transacaoDTO){
-        log.info("metodo adicionar esta rodando");
+        log.info("Iniciando processamento de gravacao das transacoes " +transacaoDTO );
         if (transacaoDTO.dataHora().isAfter(OffsetDateTime.now())){
             log.error("Data e hora nao podem ser no futuro");
              throw new UnprocessableEntity("Data e hora nao podem ser no futuro");
@@ -26,16 +26,23 @@ public class TransacaoService {
             throw new UnprocessableEntity("valor nao pode ser menor que 0");
         }
         listTransacao.add(transacaoDTO);
+        log.info("transacoes adicionadas com sucesso");
+
     }
 
     public void deletarTransacao(){
-        log.info("transacoes deletadas");
+        log.info("Iniciando processamento de delecao das transacoes ");
         listTransacao.clear();
+        log.info("transacoes deletadas com sucesso ");
+
     }
 
     public List<TransacaoDTO> gerarEstatistica(Integer tempoBusca){
+        log.info("iniciada a busca de transacao por tempo de: " + tempoBusca);
+
         OffsetDateTime dataHoraBuscada = OffsetDateTime.now().minusSeconds(tempoBusca);
 
+        log.info("retorno das buscas de transacoes");
         return listTransacao.stream()
                 .filter(transacao -> transacao.dataHora().isAfter(dataHoraBuscada))
                 .toList();

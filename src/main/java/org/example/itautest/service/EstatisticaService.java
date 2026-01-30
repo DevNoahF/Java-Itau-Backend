@@ -19,13 +19,14 @@ public class EstatisticaService {
     private final TransacaoService transacaoService;
 
     public EstatisticaDTO calcularEstatisticaTransacao(Integer tempoBuscado){
+        log.info("iniciando o retorno da busca de estatisticas de transacoes");
         List<TransacaoDTO> listTransacao = transacaoService.gerarEstatistica(tempoBuscado);
 
         DoubleSummaryStatistics doubleSummaryStatistics = listTransacao.stream()
                 .mapToDouble(TransacaoDTO::valor)
                 .summaryStatistics();
 
-        log.info("lista de estatistica sendo retornada");
+        log.info("estatisticas retornada por sucesso");
         if (!(doubleSummaryStatistics.getCount() == 0)) {
             return new EstatisticaDTO(doubleSummaryStatistics.getCount(),
                     doubleSummaryStatistics.getSum(),
@@ -33,6 +34,7 @@ public class EstatisticaService {
                     doubleSummaryStatistics.getMin(),
                     doubleSummaryStatistics.getMax());
         }else{
+            log.debug("provavemente algum erro envolvendo os numero igualados a zero");
             return new EstatisticaDTO(0L,0,0,0,0);
         }
 
