@@ -1,5 +1,8 @@
 package org.example.itautest.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.example.itautest.dto.EstatisticaDTO;
 import org.example.itautest.service.EstatisticaService;
@@ -15,6 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class EstatisticaController {
 
     private final EstatisticaService estatisticaService;
+
+    @Operation(description = "endpoint para busca de estatistica com busca pelo parametro de tempo passado (segundos)")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operacao realizada com sucesso"),
+            @ApiResponse(responseCode = "400", description = "bad request")
+    })
 
 
     @GetMapping
